@@ -114,6 +114,106 @@ public class DLL {
 		}
 	}
 	
+	// Delete head node
+	public void DLLDeleteAtFirst() {
+		
+		if(this.headNode == null) {
+			System.out.println("empty list. Delete is not executed");
+			return;
+		}
+		
+		DLLNode firstNode = this.headNode;
+		this.headNode = firstNode.getNext();
+		if(this.headNode == null)	// if all node is deleted 
+			this.tailNode = null;
+		this.headNode.setPrev(null);
+		firstNode = null; 
+		
+		this.length--;
+	}
 	
+	// Delete tail node
+	public void DLLDeleteAtLast() {
+		
+		if(this.headNode == null) {
+			System.out.println("empty list. Delete is not executed");
+			return;
+		}
+		
+		DLLNode lastNode = this.tailNode;
+		
+		this.tailNode = this.tailNode.getPrev();
+		if(this.tailNode == null) // if all node is deleted 
+			this.headNode = null;
+		lastNode.setPrev(null);
+		lastNode = null;
+		this.tailNode.setNext(null);
+		
+		this.length--;
+	}
 	
+	// Delete Node
+	public void DLLDeleteNode(int position) {
+		
+		int size = getDLLSize();
+		
+		if(this.headNode == null) {
+			System.out.println("empty list. Delete is not executed");
+			return;
+		}
+		
+		if(position > size || position < 1) {
+			System.out.println("Position of node to insert is invalid. The valid inputs are 1 to " + (size));
+			return;
+		}
+		
+		if(position == 1) {
+			DLLDeleteAtFirst();			
+		} else {
+			DLLNode prevNode = this.headNode;
+			DLLNode currNode;
+			DLLNode nextNode;
+			int count = 1;
+			
+			while(count < position -1) {
+				prevNode = prevNode.getNext();
+				count++;
+			}
+			currNode = prevNode.getNext();
+			nextNode = currNode.getNext();
+			
+			if(nextNode == null) {		// delete last node
+				DLLDeleteAtLast(); 
+			} else {	//  삽입할 node가 중간에 위치
+				prevNode.setNext(nextNode);
+				nextNode.setPrev(prevNode);
+				currNode.setNext(null);
+				currNode.setPrev(null);
+				currNode = null;
+				
+				this.length--;				
+			}			
+		}
+	}
+	
+	public void DLLDeleteAll() {
+		
+		DLLNode tempNode;
+		
+		if(this.headNode == null) {
+			System.out.println("empty list. Delete is not executed");
+			return;
+		}
+		
+		while(this.headNode != null) {
+			tempNode = this.headNode.getNext();
+			this.headNode.setNext(null);
+			this.headNode.setPrev(null);
+			this.headNode = tempNode;
+			
+			this.length--;
+		}
+		
+		this.tailNode = null;
+	}
 }

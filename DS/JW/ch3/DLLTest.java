@@ -25,21 +25,35 @@ public class DLLTest {
 		list.DLLInsert(new DLLNode(100),  1);
 		list.DLLInsert(new DLLNode(200),  8);
 		list.DLLInsert(new DLLNode(300),  3);
-		
-		
-		
 		list.printDLL();
 		
+		// Delete node at first location
+		System.out.println("Delete node at first location");
+		list.DLLDeleteAtFirst();
+		list.printDLL();
+		list.DLLDeleteAtFirst();
+		list.printDLL();
 		
+		// Delete node at last location
+		System.out.println("Delete node at last location");
+		list.DLLDeleteAtLast();
+		list.printDLL();
+		list.DLLDeleteAtLast();
+		list.printDLL();
 		
+		// Delete node with position
+		System.out.println("Delete node with position");
+		list.DLLDeleteNode(1);
+		list.printDLL();
+		list.DLLDeleteNode(4);
+		list.printDLL();
+		list.DLLDeleteNode(2);
+		list.printDLL();	
 		
-		
-		
-		
+		list.DLLDeleteAll();
+		list.printDLL();		
 		
 		System.out.println("size of list : " + list.getDLLSize());
-		
-		
 		
 	}
 
