@@ -5,6 +5,24 @@ public class DLL {
 	private DLLNode tailNode = null;
 	private int length = 0;
 	
+	public DLLNode getHeadNode() {
+		if(this.headNode == null) {
+			System.out.println("DLL is empty");	
+			return null;
+		}
+		
+		return this.headNode;
+	}
+	
+	public DLLNode getTailNode() {
+		if(this.headNode == null) {
+			System.out.println("DLL is empty");	
+			return null;
+		}
+		
+		return this.tailNode;
+	}
+	
 	public int getDLLSize() {
 		return length;
 	}
@@ -14,12 +32,12 @@ public class DLL {
 		DLLNode currNode = this.headNode;
 		
 		if(this.headNode == null){			
-			System.out.println("SLL is empty");			
+			System.out.println("DLL is empty");			
 			return;
 		}			
 		
 		while(currNode != null) {
-			System.out.print(currNode.getData() + " ");
+			System.out.print("-> " + currNode.getData());
 			currNode = currNode.getNext();
 		}
 		
@@ -126,7 +144,8 @@ public class DLL {
 		this.headNode = firstNode.getNext();
 		if(this.headNode == null)	// if all node is deleted 
 			this.tailNode = null;
-		this.headNode.setPrev(null);
+		else
+			this.headNode.setPrev(null);
 		firstNode = null; 
 		
 		this.length--;
@@ -216,4 +235,55 @@ public class DLL {
 		
 		this.tailNode = null;
 	}
+	
+	// ch3-2
+	public DLLNode findNodeFromTail(int position) {
+		DLLNode currNode = this.tailNode;
+		int count = 1;
+		int size = getDLLSize();
+		
+		if(this.headNode == null) {
+			System.out.println("empty list");
+			return null;
+		}
+		
+		if(position > size || position < 1) {
+			System.out.println("position value is invalid");
+			return null;
+		}
+		
+		while(count < position) {
+			currNode = currNode.getPrev();
+			count++;			
+		}
+		
+		return currNode;
+	}
+	
+	// ch3-4
+	public DLLNode findNodeFromHead(int position) {
+		DLLNode currNode = this.headNode;
+		int count = 1;
+		int size = getDLLSize();
+		
+		if(this.headNode == null) {
+			System.out.println("empty list");
+			return null;
+		}
+		
+		if(position > size || position < 1) {
+			System.out.println("position value is invalid");
+			return null;
+		}
+		
+		// n번째 node를 찾기 위한 시간 복잡도 O(n)
+		while(count < position) {
+			currNode = currNode.getNext();
+			count++;			
+		}
+		
+		return currNode;
+		
+	}
+	
 }
