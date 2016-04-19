@@ -286,4 +286,73 @@ public class DLL {
 		
 	}
 	
+	// ch3-5
+	public DLLNode findNodeFromTail2(int position) {
+		DLLNode currNode = this.headNode;
+		DLLNode tempNode = this.headNode;
+		int count = 0; 
+		
+		if(this.headNode == null) {
+			System.out.println("empty list");
+			return null;
+		}
+		
+		while(tempNode != null) {
+			count++;
+			
+			if(count > position) 
+				currNode = currNode.getNext();
+			
+			tempNode = tempNode.getNext();
+		}
+		
+		if(currNode != null)
+			return currNode;
+		else
+			return null; 		
+	}
+	
+	
+	// ch3-5
+	// 교재 코드 이상함.. 일단 아래대로 하면 compile error가 남
+	// 조건문도 이상함.. 
+//	public DLLNode findNodeFromTail2(int position) {
+//		DLLNode currNode;
+//		DLLNode tempNode;
+//		int count = 0;
+//		int size = getDLLSize();
+//		
+//		if(this.headNode == null) {
+//			System.out.println("empty list");
+//			return null;
+//		}
+//		
+//		for(tempNode = this.headNode; tempNode != null; ) {
+//			count++;
+//			if(position - count == 0)
+//				currNode = this.headNode;
+//			else if(position - count > 0) 
+//				currNode = currNode.getNext();
+//			
+//			tempNode = tempNode.getNext();
+//		}
+//				
+//		if(currNode != null)
+//			return currNode;
+//		return null;			
+//	}
+	
+	// ch3-7
+	// loop list를 만들기 위한 임시 method
+	// ch3-7 테스트 외엔 사용을 금한다
+	public void buildLoop(DLLNode loopNode) {
+		
+		if(this.headNode == null) {
+			System.out.println("empty list");
+			return;
+		}
+		
+		this.tailNode.setNext(loopNode);		
+	}
+	
 }
