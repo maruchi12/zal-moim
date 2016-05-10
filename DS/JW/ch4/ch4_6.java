@@ -2,6 +2,7 @@ package ds_ch4;
 
 import java.util.Stack;
 
+// ch4-6, ch4-7 
 public class ch4_6 extends Stack {
 
 	private Stack<Integer> mainStack;
@@ -31,7 +32,16 @@ public class ch4_6 extends Stack {
 		}
 	}
 	
-	
+	// ch4-7
+	public void enhancedPush(int data) {
+		
+		mainStack.push(new Integer(data));
+		
+		// minStack이 empty stack 이거나 data가 minStack의 top보다 작거나 같을 때만 push한다 
+		if(minStack.isEmpty() || data <= minStack.peek().intValue()) {
+			minStack.push(new Integer(data));
+		}
+	}
 	
 	public int popFromMain() {
 		int data = INVALID_VALUE;
@@ -49,6 +59,28 @@ public class ch4_6 extends Stack {
 		System.out.println("min : " + min + " data : " + data);
 		
 		return data;
+	}
+	
+	// ch4-7
+	public int enhancedPop() {
+		int data = INVALID_VALUE;
+		
+		if(mainStack.isEmpty()) {
+			System.out.println("Stack is empty");
+			
+			return data;
+		}
+		
+		data = mainStack.pop().intValue();
+		
+		// minStack의 top과 mainStack의 top이 같을 경우에만 minStack에서 pop 한다
+		// mainStack이 empty가 아닐경우 minStack도 empty가 아님
+		if(data == minStack.peek().intValue()) {
+			//System.out.println("data == top of minStack");
+			minStack.pop();
+		}
+		
+		return data;		
 	}
 	
 //	오버라이드!!!	

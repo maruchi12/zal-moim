@@ -22,7 +22,7 @@ public class ch4_5 extends Stack {
 		
 		for(int i = expression.length() - 1; i >= 0; i--) {
 			token = expression.charAt(i);
-			System.out.println("token : " + token);
+			//System.out.println("token : " + token);
 			
 			// operand, operator 구분
 			// 더 좋은 로직이 있는지 고민 필요
@@ -71,18 +71,18 @@ public class ch4_5 extends Stack {
 					}
 					
 					operandStack.push(new Integer(result));
-					System.out.println("push operand : " + result);
+					//System.out.println("push operand : " + result);
 				}
 				
 				operatorStack.push(new Character(token));
-				System.out.println("push operator : " + token);
+				//System.out.println("push operator : " + token);
 				
 			} 
 			else {				
 				// char -> string -> integer 안 거치는 방법?
 				String str = String.valueOf(token);				
 				operandStack.push(new Integer(Integer.valueOf(str)));
-				System.out.println("push operand : " + Integer.valueOf(str));
+				//System.out.println("push operand : " + Integer.valueOf(str));
 			}
 		}
 		
@@ -116,7 +116,7 @@ public class ch4_5 extends Stack {
 			}
 			
 			operandStack.push(new Integer(result));
-			System.out.println("push operand : " + result);
+			//System.out.println("push operand : " + result);
 		}
 		
 		return operandStack.pop().intValue();
